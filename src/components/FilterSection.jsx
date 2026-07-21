@@ -1,12 +1,11 @@
-import useExpense from '../hooks/useExpense'
-import useFilter from '../hooks/useFilter'
-
-const FilterSection = () => {
-  const { expenses, categories } = useExpense()
-
-  const { filter, updateFilters, clearFilters, getFilterSummary } =
-    useFilter(expenses)
-
+const FilterSection = ({
+  expenses,
+  categories,
+  filter,
+  updateFilters,
+  clearFilters,
+  getFilterSummary,
+}) => {
   const filterSummary = getFilterSummary()
 
   return (
@@ -68,6 +67,32 @@ const FilterSection = () => {
             placeholder='999.99'
             value={filter.maxAmount}
             onChange={(e) => updateFilters('maxAmount', e.target.value)}
+          />
+        </div>
+
+        <div className='formGroup'>
+          <label htmlFor='dateFrom'>Date From</label>
+
+          <input
+            className='input'
+            id='dateFrom'
+            type='date'
+            max={filter.dateTo || undefined}
+            value={filter.dateFrom}
+            onChange={(e) => updateFilters('dateFrom', e.target.value)}
+          />
+        </div>
+
+        <div className='formGroup'>
+          <label htmlFor='dateTo'>Date To</label>
+
+          <input
+            className='input'
+            id='dateTo'
+            min={filter.dateFrom || undefined}
+            type='date'
+            value={filter.dateTo}
+            onChange={(e) => updateFilters('dateTo', e.target.value)}
           />
         </div>
       </div>

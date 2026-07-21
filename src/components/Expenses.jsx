@@ -1,16 +1,12 @@
-import useFilter from '../hooks/useFilter'
-
-const Expenses = ({ expenses, setExpenses }) => {
-  const { filteredData: filteredExpenses } = useFilter(expenses)
-
+const Expenses = ({ setExpenses, expenses: filteredExpenses }) => {
   const removeExpense = (id) => {
     setExpenses((prev) => prev.filter((exp) => exp.id !== id))
   }
 
   return (
     <section className='expensesGrid'>
-      {filteredExpenses.length > 0 ? (
-        filteredExpenses.map((expense) => {
+      {filteredExpenses?.length > 0 ? (
+        filteredExpenses?.map((expense) => {
           return (
             <div key={expense.id} className='card expenseCard'>
               <div className='expenseHeader'>

@@ -1,12 +1,9 @@
 import { useState } from 'react'
-import useExpense from '../hooks/useExpense'
 
-const AddExpenseForm = ({ expenses, setExpenses }) => {
-  const { categories } = useExpense()
+const AddExpenseForm = ({ categories, addExpense }) => {
   const [description, setDescription] = useState('')
   const [amount, setAmount] = useState('')
   const [category, setCategory] = useState('')
-
   const handleSubmit = (e) => {
     e.preventDefault()
     if (!description.trim() || !amount || !category) {
@@ -20,7 +17,7 @@ const AddExpenseForm = ({ expenses, setExpenses }) => {
       category,
     }
 
-    setExpenses((prev) => [newExpense, ...prev])
+    addExpense(newExpense)
 
     setDescription('')
     setAmount('')

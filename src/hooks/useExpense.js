@@ -12,7 +12,6 @@ const categories = [
 
 const useExpense = () => {
   const [expenses, setExpenses] = useLocalStorage('expenses', [])
-  console.log(expenses, 'expenses Hook')
 
   const addExpense = (expenseData) => {
     const newExpense = {
@@ -20,7 +19,10 @@ const useExpense = () => {
       ...expenseData,
       date: new Date().toISOString().split('T')[0],
     }
-    setExpenses((prevExp) => [newExpense, ...prevExp])
+    setExpenses((prevExp) => {
+      console.log('Prev:', prevExp)
+      return [newExpense, ...prevExp]
+    })
   }
 
   const removeExpense = (id) => {
